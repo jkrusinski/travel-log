@@ -3,7 +3,14 @@ var router = express.Router();
 
 var User = require('../models/User');
 
+var helpers = require('../helpers');
+
 module.exports = function(passport) {
+
+  // allows angularjs to check for valid session
+  router.get('/', helpers.isAuth, function(req, res, next) {
+    res.sendStatus(200);
+  });
 
   router.post(
     '/login',

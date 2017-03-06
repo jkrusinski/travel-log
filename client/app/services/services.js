@@ -3,6 +3,18 @@ angular.module('travel-log.services', [])
 .factory('Auth', function($http, $location) {
   var loggedIn = false;
 
+  // when page refreshes, check cookie for valid session
+  $http({
+    method: 'GET',
+    url: '/api/users'
+  })
+  .then(function() {
+    loggedIn = true;
+  })
+  .catch(function() {
+    loggedIn = false;
+  });
+
   var login = function(username, password) {
     return $http({
       method: 'POST',
@@ -41,6 +53,14 @@ angular.module('travel-log.services', [])
       method: 'POST',
       url: '/api/users/logout'
     })
+    .then(function() {
+      loggedIn = false;
+      return true;
+    })
+    .catch(function() {
+      loggedIn = false;
+      return false;
+    });
   };
 
   var isAuth = function() {
@@ -50,6 +70,7 @@ angular.module('travel-log.services', [])
   return {
     login: login,
     signup: signup,
+    logout: logout,
     isAuth: isAuth
   };
 });
