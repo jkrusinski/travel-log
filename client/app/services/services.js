@@ -1,7 +1,7 @@
 angular.module('travel-log.services', [])
 
 .factory('Auth', function($http, $location) {
-  var user;
+  var loggedIn = false;
 
   var login = function(username, password) {
     return $http({
@@ -12,15 +12,44 @@ angular.module('travel-log.services', [])
         password: password
       }
     })
-    .then(function(success) {
-      console.log(success);
+    .then(function() {
+      loggedIn = true;
+      return true;
     })
-    .catch(function(fail) {
-      console.log(fail);
+    .catch(function() {
+      return false;
     });
   };
 
+  var signup = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: user
+    })
+    .then(function() {
+      loggedIn = true;
+      return true;
+    })
+    .catch(function() {
+      return false;
+    });
+  };
+
+  var logout = function() {
+    return $http({
+      method: 'POST',
+      url: '/api/users/logout'
+    })
+  };
+
+  var isAuth = function() {
+    return loggedIn;
+  };
+
   return {
-    login: login
+    login: login,
+    signup: signup,
+    isAuth: isAuth
   };
 });
