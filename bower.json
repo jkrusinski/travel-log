@@ -1,0 +1,23 @@
+{
+  "name": "travel-log",
+  "description": "An intelligent travel log to help keep track of all of your adventures! Made for the MVP project for Hack Reactor.",
+  "main": "client/index.html",
+  "authors": [
+    "Jerry Krusinski <jkruzr@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jkrusinski/travel-log",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.2"
+  }
+}

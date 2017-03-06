@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="travel-log">
+  <head>
+    <meta charset="utf-8" />
+    <title>Travel Log</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  </head>
+  <body>
+    <h1>Travel Log</h1>
+
+    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+    <div ng-view></div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+    <script src="app/app.js"></script>
+  </body>
+</html>
