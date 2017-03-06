@@ -41,10 +41,12 @@ userSchema.pre('save', function(next) {
   }
 
   bcrypt.hash(user.password, 10)
+
   .then(function(hash) {
     user.password = hash;
     next();
   })
+
   .catch(function(err) {
     next(err);
   });
