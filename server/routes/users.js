@@ -1,32 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
-var User = require('./models/User');
+var User = require('../models/User');
 
-router.post('/login', function(req, res, next) {
+module.exports = function(passport) {
 
-});
-
-router.post('/signup', function(req, res, next) {
-  var newUser = req.body;
-
-  User.findOne({ username: newUser.username })
-
-  .then(function(user) {
-    if (user) {
-      next(new Error('User already exists!'));
-    } else {
-      return User.create(newUser);
+  router.post(
+    '/login',
+    passport.authenticate('login'),
+    function(req, res, next) {
+      res.sendStatus(200);
     }
-  })
+  );
 
-  .then(function(created) {
-    res.json(created);
-  })
+  router.post(
+    '/signup',
+    passport.authenticate('signup'),
+    function(req, res, next) {
+      res.sendStatus(200);
+    }
+  );
 
-  .catch(function(err) {
-    next(err);
-  });
-});
-
-module.exports = router;
+  return router;
+};
