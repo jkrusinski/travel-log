@@ -1,3 +1,5 @@
+global.Promise = require('bluebird');
+
 var config = require('../config');
 var express = require('express');
 var mongoose = require('mongoose');
