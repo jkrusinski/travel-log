@@ -1,0 +1,24 @@
+{
+  "name": "travel-log",
+  "version": "1.0.0",
+  "description": "An intelligent travel log to help keep track of all of your adventures! Made for the MVP project for Hack Reactor.",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkrusinski/travel-log.git"
+  },
+  "author": "Jerry Krusinski <jkruzr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkrusinski/travel-log/issues"
+  },
+  "homepage": "https://github.com/jkrusinski/travel-log#readme",
+  "dependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "express": "^4.15.2",
+    "mongoose": "^4.8.6"
+  }
+}
