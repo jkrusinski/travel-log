@@ -21,5 +21,10 @@ module.exports = function(passport) {
     }
   );
 
+  router.post('/logout', function(req, res, next) {
+    req.logout();
+    res.sendStatus(200);
+  });
+
   return router;
 };

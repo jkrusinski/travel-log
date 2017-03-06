@@ -1,5 +1,5 @@
 angular.module('travel-log.dashboard', [])
 
-.controller('DashboardCtrl', funciton($scope, $location) {
+.controller('DashboardCtrl', function($scope, $location) {
 
 });

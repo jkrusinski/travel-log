@@ -19,7 +19,7 @@ var app = express();
 var db = mongoose.connect(config.database);
 
 // passport requirements
-app.use(expressSession({ secret: 'mySecretKey'}));
+app.use(expressSession({ secret: 'mySecretKey', cookie: { maxAge: 60000 }}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -34,6 +34,9 @@ require('./passport/init')(passport);
 
 // routes
 app.use('/api/users', users(passport));
+app.get('/test', function(req, res, next) {
+  res.json(req.user);
+});
 
 // error handlers
 app.use(function(req, res, next) {
