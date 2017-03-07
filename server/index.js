@@ -1,9 +1,11 @@
-
 var config = require('../config');
 var express = require('express');
 var mongoose = require('mongoose');
 
 var users = require('./routes/users');
+var trips = require('./routes/trips');
+var places = require('./routes/places');
+var helpers = require('./helpers');
 
 global.Promise = mongoose.Promise = require('bluebird');
 
@@ -34,9 +36,8 @@ require('./passport/init')(passport);
 
 // routes
 app.use('/api/users', users(passport));
-app.get('/test', function(req, res, next) {
-  res.json(req.user);
-});
+app.use('/api/trips', helpers.isAuth, trips);
+app.use('/api/places', helpers.isAuth, places);
 
 // error handlers
 app.use(function(req, res, next) {
