@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
   .catch(function(err) {
     next(err);
   });
-
 });
 
 router.post('/', function(req, res, next) {

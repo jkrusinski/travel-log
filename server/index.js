@@ -21,6 +21,7 @@ var path = require('path');
 var app = express();
 var db = mongoose.connect(config.database);
 
+// set up view engine to render API key
 app.set('view engine', 'ejs');
 app.set('views', 'client');
 
@@ -46,7 +47,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // error handlers
 app.use(function(req, res, next) {
-  var err = new Error('Not found.');
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
