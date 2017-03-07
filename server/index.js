@@ -8,6 +8,7 @@ var places = require('./routes/places');
 var helpers = require('./helpers');
 
 global.Promise = mongoose.Promise = require('bluebird');
+global._ = require('lodash');
 
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
