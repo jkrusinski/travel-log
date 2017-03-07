@@ -7,12 +7,12 @@
   <h4>Places</h4>
   <div ng-if="trip.places.length === 0">You don't have any places in this trip. Add one below.</div>
   <ul ng-if="trip.places.length >= 0">
-    <li ng-repeat="place in trip.places"></li>
+    <li ng-repeat="place in trip.places">{{ place.name }}</li>
   </ul>
 
   <h4>Add A New Place: </h4>
-  <form>
-    <input id="place-autocomplete" />
+  <form ng-submit="addPlace()">
+    <input id="place-autocomplete" ng-model="input" style="width: 350px;"/>
     <input type="date" ng-model="travelDate"/>
     <input type="submit" name="Submit"/>
   </form>

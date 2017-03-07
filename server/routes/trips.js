@@ -5,7 +5,7 @@ var Trip = require('../models/Trip');
 
 router.get('/', function(req, res, next) {
 
-  Trip.find({ user: req.user._id })
+  Trip.find({ user: req.user._id }).populate('places')
 
   .then(function(trips) {
     res.json(trips);
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
 
-  Trip.findById(req.params.id)
+  Trip.findById(req.params.id).populate('places')
 
   .then(function(trip) {
     res.json(trip);
