@@ -1,6 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/User');
-var _ = require('lodash');
 
 module.exports = function(passport) {
 
