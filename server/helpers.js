@@ -7,5 +7,10 @@ module.exports = {
       err.status = 401;
       next(err);
     }
+  },
+
+  sendUserInfo: function(req) {
+    var properties = ['username', 'firstName', 'lastName', 'email'];
+    return _.pick(req.user, properties);
   }
 };
