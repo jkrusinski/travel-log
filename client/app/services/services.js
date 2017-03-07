@@ -1,6 +1,6 @@
 angular.module('travel-log.services', [])
 
-.factory('Auth', function($http, $location) {
+.factory('Auth', function($http) {
   var loggedIn = false;
 
   // when page refreshes, check cookie for valid session
@@ -76,7 +76,7 @@ angular.module('travel-log.services', [])
   };
 })
 
-.factory('Trips', function() {
+.factory('Trips', function($http) {
 
   var newTrip = function(trip) {
     return $http({
@@ -107,9 +107,33 @@ angular.module('travel-log.services', [])
   };
 })
 
-.factory('Places', function() {
+.factory('Places', function($http) {
+
+  var newPlace = function(place) {
+    return $http({
+      method: 'POST',
+      url: '/api/places',
+      data: place
+    })
+
+    .then(function(doc) {
+      return doc.id;
+    })
+
+    .catch(function() {
+      return undefined;
+    });
+  };
+
+  var getPlaces = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/places'
+    });
+  };
 
   return {
-
+    newPlace: newPlace,
+    getPlaces: getPlaces
   };
 });
