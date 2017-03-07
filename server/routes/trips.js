@@ -16,6 +16,19 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/:id', function(req, res, next) {
+
+  Trip.findById(req.params.id)
+
+  .then(function(trip) {
+    res.json(trip);
+  })
+
+  .catch(function(err) {
+    next(err);
+  });
+});
+
 router.post('/', function(req, res, next) {
   var newTrip = _.pick(req.body, ['name', 'description', 'places']);
   newTrip.user = req.user._id;
@@ -23,7 +36,21 @@ router.post('/', function(req, res, next) {
   Trip.create(newTrip)
 
   .then(function(trip) {
-    res.json({ id: trip._id });
+    res.json(trip);
+  })
+
+  .catch(function(err) {
+    next(err);
+  });
+});
+
+router.put('/:id', function(req, res, next) {
+  var updated = _.pick(req.body, ['name', 'description', 'places']);
+
+  Trip.findByIdAndUpdate(req.params.id, updated)
+
+  .then(function(trip) {
+    res.json(trip);
   })
 
   .catch(function(err) {
