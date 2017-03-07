@@ -83,14 +83,6 @@ angular.module('travel-log.services', [])
       method: 'POST',
       url: '/api/trips',
       data: trip
-    })
-
-    .then(function(doc) {
-      return doc.id;
-    })
-
-    .catch(function() {
-      return undefined;
     });
   };
 
@@ -101,9 +93,26 @@ angular.module('travel-log.services', [])
     });
   };
 
+  var getTrip = function(id) {
+    return $http({
+      method: 'GET',
+      url: '/api/trips/' + id
+    });
+  };
+
+  var updateTrip = function(id, updated) {
+    return $http({
+      method: 'PUT',
+      url: '/api/trips/' + id,
+      data: updated
+    });
+  };
+
   return {
-    trip: trip,
-    getTrips: getTrips
+    newTrip: newTrip,
+    getTrips: getTrips,
+    getTrip: getTrip,
+    updateTrip: updateTrip
   };
 })
 
