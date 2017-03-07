@@ -20,6 +20,9 @@ var path = require('path');
 var app = express();
 var db = mongoose.connect(config.database);
 
+app.set('view engine', 'ejs');
+app.set('views', 'client');
+
 // passport requirements
 app.use(expressSession({ secret: 'mySecretKey', cookie: { maxAge: 60000 }}));
 app.use(passport.initialize());
@@ -29,15 +32,16 @@ app.use(passport.session());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../client')));
 
 // initialize passport
 require('./passport/init')(passport);
 
 // routes
+app.get('/', function(req, res, next) { res.render('index', {key: config.googleApiKey }); });
 app.use('/api/users', users(passport));
 app.use('/api/trips', helpers.isAuth, trips);
 app.use('/api/places', helpers.isAuth, places);
+app.use(express.static(path.join(__dirname, '../client')));
 
 // error handlers
 app.use(function(req, res, next) {
