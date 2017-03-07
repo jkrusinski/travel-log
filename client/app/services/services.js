@@ -78,8 +78,32 @@ angular.module('travel-log.services', [])
 
 .factory('Trips', function() {
 
-  return {
+  var newTrip = function(trip) {
+    return $http({
+      method: 'POST',
+      url: '/api/trips',
+      data: trip
+    })
 
+    .then(function(doc) {
+      return doc.id;
+    })
+
+    .catch(function() {
+      return undefined;
+    });
+  };
+
+  var getTrips = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/trips'
+    });
+  };
+
+  return {
+    trip: trip,
+    getTrips: getTrips
   };
 })
 
