@@ -1,18 +1,18 @@
 angular.module('travel-log.services', [])
 
 .factory('Auth', function($http) {
-  var loggedIn = false;
+  var sessionUser;
 
   // when page refreshes, check cookie for valid session
   $http({
     method: 'GET',
     url: '/api/users'
   })
-  .then(function() {
-    loggedIn = true;
+  .then(function(user) {
+    sessionUser = user;
   })
   .catch(function() {
-    loggedIn = false;
+    sessionUser = undefined;
   });
 
   var login = function(username, password) {
@@ -24,12 +24,12 @@ angular.module('travel-log.services', [])
         password: password
       }
     })
-    .then(function() {
-      loggedIn = true;
-      return true;
+    .then(function(user) {
+      sessionUser = user;
+      return user;
     })
     .catch(function() {
-      return false;
+      sessionUser = undefined;
     });
   };
 
@@ -39,12 +39,12 @@ angular.module('travel-log.services', [])
       url: '/api/users/signup',
       data: user
     })
-    .then(function() {
-      loggedIn = true;
-      return true;
+    .then(function(user) {
+      sessionUser = user;
+      return user;
     })
     .catch(function() {
-      return false;
+      sessionUser = undefined;
     });
   };
 
@@ -54,25 +54,29 @@ angular.module('travel-log.services', [])
       url: '/api/users/logout'
     })
     .then(function() {
-      loggedIn = false;
+      sessionUser = undefined;
       return true;
     })
     .catch(function() {
-      loggedIn = false;
+      sessionUser = undefined;
       return false;
     });
   };
 
   var isAuth = function() {
-    return true;
-    return loggedIn;
+    return !!sessionUser;
+  };
+
+  var getUser = function() {
+    return sessionUser;
   };
 
   return {
     login: login,
     signup: signup,
     logout: logout,
-    isAuth: isAuth
+    isAuth: isAuth,
+    getUser: getUser
   };
 })
 
