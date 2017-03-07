@@ -1,3 +1,14 @@
 <div class="place">
 
-</div>  
+  <h2>{{ place.name }}</h2>
+
+  <a href="#!/dashboard">Dashboard</a>
+  <a href="#!/trip/{{ place.trip }}">Trip</a>
+
+</div>
+
+<hr>
+
+<pre>
+  {{ place | json }}
+</pre>

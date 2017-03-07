@@ -41,9 +41,18 @@ angular.module('travel-log', [
         }
       }
     })
-    .when('/place', {
+    .when('/place/:id', {
       templateUrl: 'app/place/place.html',
-      controller: 'PlaceCtrl'
+      controller: 'PlaceCtrl',
+      resolve: {
+        user: function(Auth) {
+          return Auth.isAuth();
+        },
+        place: function($route, Places) {
+          console.log('Im going in here');
+          return Places.getPlace($route.current.params.id);
+        }
+      }
     })
     .otherwise({
       redirectTo: '/dashboard'
