@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var User = require('./User');
-var Trip = require('./Trip');
 
 var Schema = mongoose.Schema;
 
@@ -13,6 +11,12 @@ var placeSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true
+  },
+
+  trip: {
+    type: Schema.Types.ObjectId,
+    ref: 'Trip',
     required: true
   },
 
