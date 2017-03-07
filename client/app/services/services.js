@@ -64,6 +64,7 @@ angular.module('travel-log.services', [])
   };
 
   var isAuth = function() {
+    return true;
     return loggedIn;
   };
 
@@ -72,5 +73,19 @@ angular.module('travel-log.services', [])
     signup: signup,
     logout: logout,
     isAuth: isAuth
+  };
+})
+
+.factory('Trips', function() {
+
+  return {
+
+  };
+})
+
+.factory('Places', function() {
+
+  return {
+
   };
 });

@@ -2,7 +2,9 @@ angular.module('travel-log', [
   'ngRoute',
   'travel-log.services',
   'travel-log.auth',
-  'travel-log.dashboard'
+  'travel-log.dashboard',
+  'travel-log.trip',
+  'travel-log.place'
 ])
 
 .config(function($routeProvider, $httpProvider) {
@@ -19,6 +21,14 @@ angular.module('travel-log', [
       templateUrl: 'app/dashboard/dashboard.html',
       controller: 'DashboardCtrl'
     })
+    .when('/trip', {
+      templateUrl: 'app/trip/trip.html',
+      controller: 'TripCtrl'
+    })
+    .when('/place', {
+      templateUrl: 'app/place/place.html',
+      controller: 'PlaceCtrl'
+    })
     .otherwise({
       redirectTo: '/dashboard'
     });
@@ -26,6 +36,6 @@ angular.module('travel-log', [
 
 .run(function($rootScope, $location, Auth) {
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-    
+
   });
 });

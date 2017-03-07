@@ -30,6 +30,12 @@ angular.module('travel-log.auth', [])
       email: $scope.email
     };
 
-    Auth.signup(newUser);
+    Auth.signup(newUser)
+
+    .then(function(success) {
+      if (success) {
+        $location.path('/dashboard');
+      }
+    });
   };
 });
