@@ -1,10 +1,26 @@
 <div class="trip">
   <h2>{{ trip.name }}</h2>
   <p>{{ trip.description }}</p>
+  <a href="#!/dashboard">Dashboard</a>
+  <a href="#" ng-click="logout()">Logout</a>
+
+  <h4>Places</h4>
+  <div ng-if="trip.places.length === 0">You don't have any places in this trip. Add one below.</div>
+  <ul ng-if="trip.places.length >= 0">
+    <li ng-repeat="place in trip.places"></li>
+  </ul>
+
+  <h4>Add A New Place: </h4>
+  <form>
+    <input id="place-autocomplete" />
+    <input type="date" ng-model="travelDate"/>
+    <input type="submit" name="Submit"/>
+  </form>
 </div>
 
 <hr>
 
 <pre>
-{{ trip }}
+  {{ travelDate }}
+  {{ place | json }}
 </pre>

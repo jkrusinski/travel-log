@@ -30,7 +30,9 @@ var placeSchema = new Schema({
     required: true
   },
 
-  description: String
+  description: String,
+
+  photoUrl: String
 });
 
 module.exports = mongoose.model('Place', placeSchema);
