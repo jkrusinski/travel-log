@@ -1,5 +1,17 @@
 <div class="dashboard">
 
-  <h2>My Dashboard</h2>
+  <h2>My Dashboard</h2><a href="#" ng-click="logout()">Logout</a>
+  <h4>User: <span>{{ user.username }}</span></h4>
+
+  <div ng-if="trips.length === 0">
+    You don't have any trips to display. Add one below!
+  </div>
+  <div ng-if="trips.length >= 0">
+    <ul>
+      <li ng-repeat="trip in trips track by trip._id">
+        <a href="#">{{ trip.name }}</a>
+      </li>
+    </ul>
+  </div>
 
 </div>

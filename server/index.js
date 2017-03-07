@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'client');
 
 // passport requirements
-app.use(expressSession({ secret: 'mySecretKey', cookie: { maxAge: 60000 }}));
+app.use(expressSession({ secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 

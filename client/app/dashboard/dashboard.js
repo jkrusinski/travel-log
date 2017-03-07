@@ -1,8 +1,10 @@
 angular.module('travel-log.dashboard', [])
 
-.controller('DashboardCtrl', function($scope, $location, Auth) {
-  if (!Auth.isAuth()) {
-    $location.path('/login');
-  }
+.controller('DashboardCtrl', function($scope, $location, trips, user, Trips, Auth) {
+
+  $scope.logout = Auth.logout;
+  $scope.user = user;
+  $scope.trips = trips;
+  $scope.logout = Auth.logout;
 
 });

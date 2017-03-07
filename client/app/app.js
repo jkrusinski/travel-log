@@ -19,7 +19,15 @@ angular.module('travel-log', [
     })
     .when('/dashboard', {
       templateUrl: 'app/dashboard/dashboard.html',
-      controller: 'DashboardCtrl'
+      controller: 'DashboardCtrl',
+      resolve: {
+        user: function(Auth) {
+          return Auth.isAuth();
+        },
+        trips: function(Trips) {
+          return Trips.getTrips();
+        }
+      }
     })
     .when('/trip', {
       templateUrl: 'app/trip/trip.html',
@@ -32,10 +40,4 @@ angular.module('travel-log', [
     .otherwise({
       redirectTo: '/dashboard'
     });
-})
-
-.run(function($rootScope, $location, Auth) {
-  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-
-  });
 });
