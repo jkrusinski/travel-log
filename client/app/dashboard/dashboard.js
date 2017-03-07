@@ -7,4 +7,22 @@ angular.module('travel-log.dashboard', [])
   $scope.trips = trips;
   $scope.logout = Auth.logout;
 
+  $scope.newTrip = {
+    name: '',
+    description: ''
+  };
+
+  $scope.makeTrip = function() {
+    if ($scope.newTrip.name && $scope.newTrip.description) {
+      Trips.newTrip($scope.newTrip)
+        .then(function(trip) {
+          $scope.trips.push(trip);
+          $scope.newTrip.name = '';
+          $scope.newTrip.description = '';
+        });
+    }
+  };
+
+
+
 });

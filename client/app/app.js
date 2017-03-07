@@ -29,9 +29,17 @@ angular.module('travel-log', [
         }
       }
     })
-    .when('/trip', {
+    .when('/trip/:id', {
       templateUrl: 'app/trip/trip.html',
-      controller: 'TripCtrl'
+      controller: 'TripCtrl',
+      resolve: {
+        user: function(Auth) {
+          return Auth.isAuth();
+        },
+        trip: function($route, Trips) {
+          return Trips.getTrip($route.current.params.id);
+        }
+      }
     })
     .when('/place', {
       templateUrl: 'app/place/place.html',

@@ -1,7 +1,8 @@
 <div class="dashboard">
 
   <h2>My Dashboard</h2><a href="#" ng-click="logout()">Logout</a>
-  <h4>User: <span>{{ user.username }}</span></h4>
+
+  <h4>{{ user.username }}'s Trips:</h4>
 
   <div ng-if="trips.length === 0">
     You don't have any trips to display. Add one below!
@@ -9,9 +10,27 @@
   <div ng-if="trips.length >= 0">
     <ul>
       <li ng-repeat="trip in trips track by trip._id">
-        <a href="#">{{ trip.name }}</a>
+        <a href="#!/trip/{{ trip._id }}">{{ trip.name }}</a>
       </li>
     </ul>
   </div>
 
+  <form class="new-trip" ng-submit="makeTrip()">
+    <label>Trip Name: </label>
+    <input type="text" ng-model="newTrip.name" />
+    <label>Trip Description: </label>
+    <textarea ng-model="newTrip.description"></textarea>
+    <input type="submit" name="Submit">
+  </form>
+
 </div>
+
+<hr>
+
+<pre>
+{{ user | json }}
+
+{{ newTrip | json }}
+
+{{ trips | json }}
+</pre>
