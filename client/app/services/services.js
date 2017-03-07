@@ -123,14 +123,6 @@ angular.module('travel-log.services', [])
       method: 'POST',
       url: '/api/places',
       data: place
-    })
-
-    .then(function(doc) {
-      return doc.id;
-    })
-
-    .catch(function() {
-      return undefined;
     });
   };
 
@@ -141,8 +133,25 @@ angular.module('travel-log.services', [])
     });
   };
 
+  var getPlace = function(id) {
+    return $http({
+      method: 'GET',
+      url: '/api/places/' + id
+    });
+  };
+
+  var updatePlace = function(id, updated) {
+    return $http({
+      method: 'PUT',
+      url: '/api/places/' + id,
+      data: updated
+    });
+  };
+
   return {
     newPlace: newPlace,
-    getPlaces: getPlaces
+    getPlaces: getPlaces,
+    getPlace: getPlace,
+    updatePlace: updatePlace
   };
 });
